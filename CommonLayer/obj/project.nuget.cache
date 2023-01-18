@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "YJK6aNg/Z5OvLIKNEEiCSwWKsjZfGAmDczE1QgZA+MR24KR2eTa0yqUmgwbME4Gz76KXoCMTSE1QJL6LCfjENw==",
+  "success": true,
+  "projectFilePath": "D:\\BridgeLabz\\CFP\\BookStore\\CommonLayer\\CommonLayer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\VAIBHAV JADHAV\\.nuget\\packages\\experimental.system.messaging\\1.1.0\\experimental.system.messaging.1.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}
