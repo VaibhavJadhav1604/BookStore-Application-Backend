@@ -1,0 +1,15 @@
+D:\BridgeLabz\CFP\BookStore\BusinessLayer\bin\Debug\netcoreapp3.1\BusinessLayer.deps.json
+D:\BridgeLabz\CFP\BookStore\BusinessLayer\bin\Debug\netcoreapp3.1\BusinessLayer.dll
+D:\BridgeLabz\CFP\BookStore\BusinessLayer\bin\Debug\netcoreapp3.1\BusinessLayer.pdb
+D:\BridgeLabz\CFP\BookStore\BusinessLayer\bin\Debug\netcoreapp3.1\CommonLayer.dll
+D:\BridgeLabz\CFP\BookStore\BusinessLayer\bin\Debug\netcoreapp3.1\RepositoryLayer.dll
+D:\BridgeLabz\CFP\BookStore\BusinessLayer\bin\Debug\netcoreapp3.1\CommonLayer.pdb
+D:\BridgeLabz\CFP\BookStore\BusinessLayer\bin\Debug\netcoreapp3.1\RepositoryLayer.pdb
+D:\BridgeLabz\CFP\BookStore\BusinessLayer\obj\Debug\netcoreapp3.1\BusinessLayer.csproj.AssemblyReference.cache
+D:\BridgeLabz\CFP\BookStore\BusinessLayer\obj\Debug\netcoreapp3.1\BusinessLayer.GeneratedMSBuildEditorConfig.editorconfig
+D:\BridgeLabz\CFP\BookStore\BusinessLayer\obj\Debug\netcoreapp3.1\BusinessLayer.AssemblyInfoInputs.cache
+D:\BridgeLabz\CFP\BookStore\BusinessLayer\obj\Debug\netcoreapp3.1\BusinessLayer.AssemblyInfo.cs
+D:\BridgeLabz\CFP\BookStore\BusinessLayer\obj\Debug\netcoreapp3.1\BusinessLayer.csproj.CoreCompileInputs.cache
+D:\BridgeLabz\CFP\BookStore\BusinessLayer\obj\Debug\netcoreapp3.1\BusinessLayer.csproj.CopyComplete
+D:\BridgeLabz\CFP\BookStore\BusinessLayer\obj\Debug\netcoreapp3.1\BusinessLayer.dll
+D:\BridgeLabz\CFP\BookStore\BusinessLayer\obj\Debug\netcoreapp3.1\BusinessLayer.pdb
