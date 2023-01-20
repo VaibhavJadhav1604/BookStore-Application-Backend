@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessLayer.Interface;
+using BusinessLayer.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -16,8 +18,6 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using RepositoryLayer.Interface;
 using RepositoryLayer.Services;
-using BusinessLayer.Interface;
-using BusinessLayer.Services;
 
 namespace BookStore
 {
@@ -86,6 +86,16 @@ namespace BookStore
             services.AddTransient<IAdminRepo, AdminRepo>();
             services.AddTransient<IBookBusiness, BookBusiness>();
             services.AddTransient<IBookRepo, BookRepo>();
+            services.AddTransient<ICartBusiness, CartBusiness>();
+            services.AddTransient<ICartRepo, CartRepo>();
+            services.AddTransient<IWishlistBusiness, WishlistBusiness>();
+            services.AddTransient<IWishlistRepo, WishlistRepo>();
+            services.AddTransient<IAddressBusiness, AddressBusiness>();
+            services.AddTransient<IAddressRepo, AddressRepo>();
+            services.AddTransient<IFeedbackBusiness, FeedbackBusiness>();
+            services.AddTransient<IFeedbackRepo, FeedbackRepo>();
+            services.AddTransient<IOrderBusiness, OrderBusiness>();
+            services.AddTransient<IOrderRepo, OrderRepo>();
             services.AddCors(options =>
             {
                 options.AddPolicy(
