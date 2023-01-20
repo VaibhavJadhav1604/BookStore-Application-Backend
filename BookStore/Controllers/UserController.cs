@@ -85,7 +85,7 @@ namespace BookStore.Controllers
         {
             var EmailId=User.FindFirst(ClaimTypes.Email).Value.ToString();
             var result=userBusiness.ResetPassword(EmailId, Password,ConfirmPassword);
-            if (result != null)
+            if (result)
             {
                 return Ok(new { success = true, message = "Password Reset SuccessFull"});
             }

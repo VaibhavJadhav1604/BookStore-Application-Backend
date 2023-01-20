@@ -1,8 +1,11 @@
 ﻿using BusinessLayer.Interface;
+using BusinessLayer.Services;
 using CommonLayer.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RepositoryLayer.Interface;
+using RepositoryLayer.Services;
 using System;
 
 namespace BookStore.Controllers
@@ -68,7 +71,7 @@ namespace BookStore.Controllers
             try
             {
                 var result = bookBusiness.DeleteBook(BookId);
-                if (result != null)
+                if (result)
                 {
                     return this.Ok(new { success = true, message = "Book Deleted Successfully", Response = result });
                 }
