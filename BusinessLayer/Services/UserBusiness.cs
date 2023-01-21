@@ -59,5 +59,16 @@ namespace BusinessLayer.Services
                 throw ex;
             }
         }
+        public UserModel GetUserById(int UserId)
+        {
+            try
+            {
+                return this.userRepo.GetUserById(UserId);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
