@@ -42,6 +42,10 @@ namespace RepositoryLayer.Services
             {
                 throw ex;
             }
+            finally
+            {
+                sqlConnection.Close();
+            }
         }
         public BookModel UpdateBook(BookModel bookModel)
         {
@@ -66,6 +70,10 @@ namespace RepositoryLayer.Services
             {
                 throw ex;
             }
+            finally
+            {
+                sqlConnection.Close();
+            }
         }
         public bool DeleteBook(int BookId)
         {
@@ -89,6 +97,10 @@ namespace RepositoryLayer.Services
             {
                 throw ex;
             }
+            finally
+            {
+                sqlConnection.Close();
+            }
         }
         public List<BookModel> GetAllBooks()
         {
@@ -106,6 +118,7 @@ namespace RepositoryLayer.Services
                     {
                         BookModel bookModel= new BookModel()
                         {
+                            BookId= sqlDataReaderreader.GetInt32(0),
                             BookName = sqlDataReaderreader.GetString(1),
                             AuthorName = sqlDataReaderreader.GetString(2),
                             BookDescription = sqlDataReaderreader.GetString(3),
@@ -128,6 +141,10 @@ namespace RepositoryLayer.Services
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
             }
         }
         public BookModel GetBookByBookId(int BookId)
@@ -164,6 +181,10 @@ namespace RepositoryLayer.Services
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
             }
         }
     }

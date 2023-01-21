@@ -44,6 +44,10 @@ namespace RepositoryLayer.Services
             {
                 throw ex;
             }
+            finally
+            {
+                sqlConnection.Close();
+            }
         }
 
         public string GenerateToken(string Email, long AdminId)
@@ -69,6 +73,10 @@ namespace RepositoryLayer.Services
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
             }
         }
     }

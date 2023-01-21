@@ -67,6 +67,10 @@ namespace RepositoryLayer.Services
             {
                 throw ex;
             }
+            finally
+            {
+                sqlConnection.Close();
+            }
         }
 
         public string ForgotPassword(string EmailId)
@@ -100,23 +104,38 @@ namespace RepositoryLayer.Services
             {
                 throw ex;
             }
+            finally
+            {
+                sqlConnection.Close();
+            }
         }
 
         public bool ResetPassword(string EmailId, string Password, string ConfirmPassword)
         {
-            sqlConnection = new SqlConnection(this.configuration["Connection:BookStore"]);
-            sqlConnection.Open();
-            string query = $"Select * From Users Where EmailId='{EmailId}'";
-            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
-            var UserId = Convert.ToInt32(sqlCommand.ExecuteScalar());
-            if(UserId != null)
+            try
             {
-                query = $"Update Users Set Password='{EncryptPassword(Password)}' Where EmailId='{EmailId}'";
-                sqlCommand = new SqlCommand(query, sqlConnection);
-                sqlCommand.ExecuteNonQuery();
-                return true;
+                sqlConnection = new SqlConnection(this.configuration["Connection:BookStore"]);
+                sqlConnection.Open();
+                string query = $"Select * From Users Where EmailId='{EmailId}'";
+                SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+                var UserId = Convert.ToInt32(sqlCommand.ExecuteScalar());
+                if (UserId != 0)
+                {
+                    query = $"Update Users Set Password='{EncryptPassword(Password)}' Where EmailId='{EmailId}'";
+                    sqlCommand = new SqlCommand(query, sqlConnection);
+                    sqlCommand.ExecuteNonQuery();
+                    return true;
+                }
+                return false;
             }
-            return false;
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
         }
         public string GenerateToken(string Email, long UserId)
         {
@@ -156,6 +175,7 @@ namespace RepositoryLayer.Services
             {
                 throw ex;
             }
+
         }
         public string DecryptPassword(string Password)
         {
@@ -167,6 +187,37 @@ namespace RepositoryLayer.Services
             decoder.GetChars(todecode_byte, 0, todecode_byte.Length, decodedchar, 0);
             string result = new string(decodedchar);
             return result;
+        }
+        public UserModel GetUserById(int UserId)
+        {
+            try
+            {
+                sqlConnection = new SqlConnection(this.configuration["Connection:BookStore"]);
+                sqlConnection.Open();
+                string query = $"Select * From Users Where UserId={UserId}";
+                SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    UserModel model = new UserModel();
+                    while (reader.Read())
+                    {
+                        model.FullName = reader["FullName"].ToString();
+                        model.EmailId = reader["EmailId"].ToString();
+                        model.Password = DecryptPassword(reader["Password"].ToString());
+                        model.PhoneNumber = Convert.ToInt64(reader["PhoneNumber"]);
+                    }
+                    return model;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
