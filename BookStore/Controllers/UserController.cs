@@ -3,6 +3,7 @@ using CommonLayer.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 using System.Security.Claims;
 
 namespace BookStore.Controllers
@@ -39,14 +40,14 @@ namespace BookStore.Controllers
         }
 
         [HttpPost("Login")]
-        public ActionResult Login(string EmailId,string Password)
+        public ActionResult Login(string EmailId, string Password)
         {
             try
             {
-                var result=userBusiness.Login(EmailId, Password);
+                var result = userBusiness.Login(EmailId, Password);
                 if (result != null)
                 {
-                    return Ok(new { success = true, message = "Login Successfull", Response=result });
+                    return Ok(new { success = true, message = "Login Successfull", Response = result });
                 }
                 else
                 {
@@ -67,31 +68,52 @@ namespace BookStore.Controllers
                 var result = userBusiness.ForgotPassword(Password);
                 if (result != null)
                 {
-                    return Ok(new { success = true, message = "Mail Sent"});
+                    return Ok(new { success = true, message = "Mail Sent" });
                 }
                 else
                 {
                     return BadRequest(new { success = false, message = "Mail Sending Failed" });
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
         }
 
         [HttpPost("ResetPassword")]
-        public ActionResult ResetPassword(string Password,string ConfirmPassword)
+        public ActionResult ResetPassword(string Password, string ConfirmPassword)
         {
-            var EmailId=User.FindFirst(ClaimTypes.Email).Value.ToString();
-            var result=userBusiness.ResetPassword(EmailId, Password,ConfirmPassword);
+            var EmailId = User.FindFirst(ClaimTypes.Email).Value.ToString();
+            var result = userBusiness.ResetPassword(EmailId, Password, ConfirmPassword);
             if (result)
             {
-                return Ok(new { success = true, message = "Password Reset SuccessFull"});
+                return Ok(new { success = true, message = "Password Reset SuccessFull" });
             }
             else
             {
                 return BadRequest(new { success = false, message = "Password Resetting Failed" });
+            }
+        }
+        [HttpGet("GetUserById")]
+        public ActionResult GetUserById()
+        {
+            try
+            {
+                var UserId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
+                var result = userBusiness.GetUserById(UserId);
+                if (result != null)
+                {
+                    return Ok(new { success = true, message = "Data Gained Successfully", Response = result });
+                }
+                else
+                {
+                    return Ok(new { success = false, message = "Data Gaining Failed" });
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }
